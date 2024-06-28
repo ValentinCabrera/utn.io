@@ -2,24 +2,22 @@ import React, { memo } from 'react';
 import { Handle, useStore, Position } from 'reactflow';
 
 export default memo(({ id }) => {
-    const label = useStore((s) => {
-        const node = s.nodeInternals.get(id);
-
-        if (!node) {
-            return null;
-        }
-
-        return `position x:${parseInt(node.position.x)} y:${parseInt(
-            node.position.y,
-        )}`;
-    });
-
     return (
         <>
-            <div className="wrapper gradient">
-                <div className="inner">{label || 'no node connected'}</div>
+            <div style={{
+                width: '60px',
+                height: '60px',
+                borderRadius: '50%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+
+                border: "2px solid black",
+            }}>
+                <div className="inner">{id}</div>
             </div>
             <Handle type="target" position={Position.Left} />
+            <Handle type="source" position={Position.Right} />
         </>
     );
 });
